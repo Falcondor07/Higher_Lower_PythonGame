@@ -19,24 +19,23 @@ while chances > 0 and not game_over:
             return name, description, country, followers
         choice1 = choice()
         choice2 = choice()
-        save_choice = ""
         print(f"Compare A: {choice1[0]}, {choice1[1]}, from {choice1[2]}")
         print(hl_resources.vs)
         print(f"Against B: {choice2[0]}, {choice2[1]}, from {choice2[2]}")
         user_guess = input("Who has more followers? Type 'A' or 'B': ").upper()
         if user_guess == 'A' and choice1[3] > choice2[3]:
             print(f"That's correct!, {choice1[0]} has {choice1[3]}M followers and {choice2[0]} has {choice2[3]}M followers.")
-            save_choice = choice1
             play_again = 'y'
             global score
             score += 1
             print(f"Your score is {score}")
         elif user_guess == 'B' and choice1[3] < choice2[3]:
             print(f"That's correct!, {choice1[0]} has {choice1[3]}M followers and {choice2[0]} has {choice2[3]}M followers.")
-            save_choice = choice2
             play_again = 'y'
             score += 1
             print(f"Your score is {score}")
+        elif choice1[3] == choice2[3]:
+            print(f"That's correct!, {choice1[0]} has {choice1[3]}M followers and {choice2[0]} has {choice2[3]}M followers.")
         else:
             print(f"That's incorrect!, {choice1[0]} has {choice1[3]}M followers and {choice2[0]} has {choice2[3]}M followers.")
             global chances
@@ -48,9 +47,7 @@ while chances > 0 and not game_over:
                 play_again = 'y'
         if play_again == 'y' and chances > 0:
             play_game()
-        elif play_again == 'n':
+        else:
             print(f"Thanks for playing! Your score was {score} points.")
             game_over = True
-        else:
-            print("Please type 'y' or 'n'.")
     play_game()
